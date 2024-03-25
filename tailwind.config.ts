@@ -14,8 +14,19 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors: {
+        "brand-primary": "#7672ec",
         "black-primary": "#1a1919",
         "white-primary": "#fff4ea",
+      },
+      keyframes: {
+        marquee: {
+          "0%": { transform: "translateX(-120%)" },
+          "10%, 90%": { transform: "translateX(0%)" },
+          "100%": { transform: "translateX(120%)" },
+        },
+      },
+      animation: {
+        marquee: "marquee 5s ease-in-out infinite",
       },
     },
   },
