@@ -9,10 +9,22 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@floating-ui/react": "^0.26.10",
+    "@lexical/code": "^0.14.2",
+    "@lexical/html": "^0.14.2",
+    "@lexical/link": "^0.14.2",
+    "@lexical/list": "^0.14.2",
+    "@lexical/markdown": "^0.14.2",
+    "@lexical/react": "^0.14.2",
+    "@lexical/rich-text": "^0.14.2",
+    "@lexical/selection": "^0.14.2",
+    "@lexical/utils": "^0.14.2",
     "framer-motion": "^11.0.20",
+    "lexical": "^0.14.2",
     "next": "14.1.4",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "react-hook-form": "^7.51.2"
   },
   "devDependencies": {
     "@types/node": "^20",
