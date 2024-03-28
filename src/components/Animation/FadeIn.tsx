@@ -1,7 +1,13 @@
 "use client";
 
 import { AnimationProps, motion } from "framer-motion";
-import { FadeInProps } from "./types";
+import { ReactNode } from "react";
+
+interface FadeInProps {
+  children?: ReactNode;
+  className?: string;
+  delay?: number;
+}
 
 function FadeInWrapper({ className, children, delay = 0 }: FadeInProps) {
   const animations: AnimationProps = {
