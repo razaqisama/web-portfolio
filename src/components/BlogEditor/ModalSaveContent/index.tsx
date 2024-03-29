@@ -2,7 +2,7 @@
 
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { Controller, useForm } from "react-hook-form";
-import { ChangeEvent, useCallback } from "react";
+import { ChangeEvent, useCallback, useEffect } from "react";
 import { createArticle } from "@/lib/articles/createArticle";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
@@ -29,9 +29,8 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
     },
   });
 
-  const onChangeTitle = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      const { value } = e.currentTarget;
+  const changeTitleAndSlug = useCallback(
+    (value: string) => {
       setValue("title", value);
       setValue(
         "slug",
@@ -44,6 +43,14 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
       );
     },
     [setValue],
+  );
+
+  const onChangeTitle = useCallback(
+    (e: ChangeEvent<HTMLInputElement>) => {
+      const { value } = e.currentTarget;
+      changeTitleAndSlug(value);
+    },
+    [changeTitleAndSlug],
   );
 
   const onChangeSlug = useCallback(
@@ -61,6 +68,17 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
     },
     [setValue],
   );
+
+  useEffect(() => {
+    const rootElement = editor.getRootElement();
+
+    if (rootElement) {
+      const defaultTitle =
+        rootElement.getElementsByTagName("h1").item(0)?.innerText ?? "";
+
+      changeTitleAndSlug(defaultTitle);
+    }
+  }, [changeTitleAndSlug, editor]);
 
   const actions = useCallback(async () => {
     const content = JSON.stringify(editor.getEditorState());

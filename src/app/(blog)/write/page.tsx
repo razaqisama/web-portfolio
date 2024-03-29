@@ -1,9 +1,9 @@
-import { BlogEditor } from "@/components/";
+import { ContentEditor } from "@/components";
 
 function WritePage() {
   return (
     <div className="w-full h-full">
-      <BlogEditor />
+      <ContentEditor />
     </div>
   );
 }

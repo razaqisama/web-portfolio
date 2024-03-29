@@ -18,6 +18,12 @@ import {
   HeadingTagType,
 } from "@lexical/rich-text";
 import { $setBlocksType } from "@lexical/selection";
+import {
+  AlignmentCenterIcon,
+  AlignmentJustifyIcon,
+  AlignmentLeftIcon,
+  AlignmentRightIcon,
+} from "@/icons";
 import Modal from "../../../Modal";
 import { FORMAT_HEADING_COMMAND } from "../plugins/HeadingPlugin";
 import {
@@ -32,19 +38,19 @@ import { ToolbarButtonType } from "./type";
 const alignments: ToolbarButtonType<ElementFormatType>[] = [
   {
     type: "center",
-    icon: "C",
+    icon: <AlignmentCenterIcon strokeWidth={4} />,
   },
   {
     type: "right",
-    icon: "R",
+    icon: <AlignmentRightIcon strokeWidth={2} />,
   },
   {
     type: "justify",
-    icon: "J",
+    icon: <AlignmentJustifyIcon strokeWidth={2} />,
   },
   {
     type: "left",
-    icon: "L",
+    icon: <AlignmentLeftIcon strokeWidth={2} />,
   },
 ];
 

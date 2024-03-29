@@ -21,7 +21,7 @@ interface EditorProps {
 
 const defaultEditorState = `{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}`;
 
-function BlogEditor({ initialState, editable = true }: EditorProps) {
+function ContentViewer({ initialState, editable = false }: EditorProps) {
   const initialConfig = {
     editorState: JSON.stringify(initialState) ?? defaultEditorState,
     editable,
@@ -35,15 +35,11 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
     <LexicalComposer initialConfig={initialConfig}>
       <RichTextPlugin
         contentEditable={<ContentEditable className="outline-none" />}
-        placeholder={
-          <span className="absolute top-0 left-0 select-none z-[-1]">
-            Enter some text...
-          </span>
-        }
+        placeholder={<span />}
         ErrorBoundary={LexicalErrorBoundary}
       />
     </LexicalComposer>
   );
 }
 
-export default BlogEditor;
+export default ContentViewer;

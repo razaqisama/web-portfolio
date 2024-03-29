@@ -7,6 +7,8 @@ export const articles = sqliteTable("articles", {
   description: text("description").notNull(),
   content: text("content").notNull(),
   slug: text("slug").unique().notNull(),
+  status: text("status", { enum: ["draft", "published"] }).notNull(),
+  publishedAt: text("publishedAt"),
   createdAt: text("createdAt")
     .default(sql`CURRENT_TIMESTAMP`)
     .notNull(),

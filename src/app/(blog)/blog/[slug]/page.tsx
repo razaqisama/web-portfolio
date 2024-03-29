@@ -1,4 +1,4 @@
-import { BlogViewer } from "@/components";
+import { ContentViewer } from "@/components";
 import { getOneArticleBySlug } from "@/lib/articles/getOneArticleBySlug";
 
 async function BlogSlug({ params }: { params: { slug: string } }) {
@@ -8,7 +8,7 @@ async function BlogSlug({ params }: { params: { slug: string } }) {
     <div className="w-full h-full">
       <div>{article.data?.title}</div>
       {article.data?.content && (
-        <BlogViewer
+        <ContentViewer
           initialState={JSON.parse(article.data.content)}
           editable={false}
         />

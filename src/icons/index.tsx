@@ -1,6 +1,10 @@
 export { default as ArrowPathIcon } from "./ArrowPathIcon";
 export { default as ArrowRightIcon } from "./ArrowRightIcon";
 export { default as ArrowUpRightIcon } from "./ArrowUpRightIcon";
+export { default as AlignmentCenterIcon } from "./AlignmentCenterIcon";
+export { default as AlignmentJustifyIcon } from "./AlignmentJustifyIcon";
+export { default as AlignmentLeftIcon } from "./AlignmentLeftIcon";
+export { default as AlignmentRightIcon } from "./AlignmentRightIcon";
 export { default as ChevronLeftIcon } from "./ChevronLeftIcon";
 export { default as ClockIcon } from "./ClockIcon";
 export { default as ElipsisVerticalIcon } from "./ElipsisVerticalIcon";

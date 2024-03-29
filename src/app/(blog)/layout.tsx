@@ -14,7 +14,7 @@ export default function BlogLayout({
 }>) {
   return (
     <AppProviders>
-      <main className="p-4 lg:p-8 flex justify-center items-center w-dvw h-dvh">
+      <main className="p-4 lg:p-8 flex justify-center items-center">
         {children}
       </main>
     </AppProviders>
