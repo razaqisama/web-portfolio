@@ -9,6 +9,7 @@ import Link from "next/link";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
+import { EditorState } from "lexical";
 import Modal from "../Modal";
 import { theme } from "./ContentEditor/theme";
 import { nodes } from "./ContentEditor/nodes";
@@ -20,9 +21,17 @@ function onError(error: Error) {
   console.error(error);
 }
 
-function Editor() {
+interface EditorProps {
+  initialState?: EditorState;
+  editable?: boolean;
+}
+
+const defaultEditorState = `{"root":{"children":[{"children":[],"direction":null,"format":"","indent":0,"type":"paragraph","version":1}],"direction":null,"format":"","indent":0,"type":"root","version":1}}`;
+
+function BlogEditor({ initialState, editable = true }: EditorProps) {
   const initialConfig = {
-    // editorState: JSON.stringify({}),
+    editorState: JSON.stringify(initialState) ?? defaultEditorState,
+    editable,
     namespace: "Content Writer",
     nodes,
     theme,
@@ -55,6 +64,7 @@ function Editor() {
             </button>
           </div>
         </div>
+
         <div className="border-t-2 border-white-primary py-2 pb-16">
           <div className="relative">
             <RichTextPlugin
@@ -82,4 +92,4 @@ function Editor() {
   );
 }
 
-export default Editor;
+export default BlogEditor;

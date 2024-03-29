@@ -1,8 +1,11 @@
 "use client";
 
-// import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { Controller, useForm } from "react-hook-form";
 import { ChangeEvent, useCallback } from "react";
+import { createArticle } from "@/lib/articles/createArticle";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
 import Input from "../../Input";
 
 interface ModalSaveContentProps {
@@ -10,17 +13,18 @@ interface ModalSaveContentProps {
 }
 
 function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
-  // const [editor] = useLexicalComposerContext();
-  // const stringEditor = JSON.stringify(editor.getEditorState()); used for saving to the services.
+  const router = useRouter();
+  const [editor] = useLexicalComposerContext();
 
   const {
     control,
     formState: { errors },
+    getValues,
     setValue,
   } = useForm({
     defaultValues: {
       title: "",
-      subtitle: "",
+      description: "",
       slug: "",
     },
   });
@@ -58,10 +62,33 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
     [setValue],
   );
 
+  const actions = useCallback(async () => {
+    const content = JSON.stringify(editor.getEditorState());
+
+    try {
+      const payload = {
+        title: getValues("title"),
+        description: getValues("description"),
+        slug: getValues("slug"),
+        content,
+      };
+
+      const response = await createArticle(payload);
+
+      if (response.data) {
+        router.push(`/blog/${response.data.slug}`);
+      } else {
+        throw new Error("Terdapat kesalahan dalam menambahkan article");
+      }
+    } catch (err) {
+      toast.error("Terdapat kesalahan dalam menambahkan article");
+    }
+  }, [editor, getValues, router]);
+
   return (
     <div className="flex flex-col gap-2 border border-brand-primary min-w-[320px] items-center py-4 w-full">
       <h1 className="text-4xl text-center">Publih Your Content</h1>
-      <form className="w-full flex flex-col gap-4 px-4">
+      <form action={actions} className="w-full flex flex-col gap-4 px-4">
         <Controller
           name="title"
           control={control}
@@ -84,7 +111,7 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
           )}
         />
         <Controller
-          name="subtitle"
+          name="description"
           control={control}
           rules={{
             required: {

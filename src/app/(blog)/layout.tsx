@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "../globals.css";
 import { ReactNode } from "react";
-
-const inter = Inter({ subsets: ["latin"] });
+import { AppProviders } from "@/components";
 
 export const metadata: Metadata = {
   title: "Razaqisama - Web Portfolio",
@@ -16,12 +13,10 @@ export default function BlogLayout({
   children: ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <main className="p-4 lg:p-8 flex justify-center items-center w-dvw h-dvh">
-          {children}
-        </main>
-      </body>
-    </html>
+    <AppProviders>
+      <main className="p-4 lg:p-8 flex justify-center items-center w-dvw h-dvh">
+        {children}
+      </main>
+    </AppProviders>
   );
 }
