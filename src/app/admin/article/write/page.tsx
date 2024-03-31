@@ -1,6 +1,6 @@
 import { ContentEditor } from "@/components";
 
-function WritePage() {
+function WriteArticlePage() {
   return (
     <div className="w-full h-full">
       <ContentEditor />
@@ -8,4 +8,4 @@ function WritePage() {
   );
 }
 
-export default WritePage;
+export default WriteArticlePage;

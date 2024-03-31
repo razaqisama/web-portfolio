@@ -1,8 +1,9 @@
-import { ChangeEvent, forwardRef } from "react";
+import { ChangeEvent, HTMLInputTypeAttribute, forwardRef } from "react";
 
 interface InputProps {
   name: string;
   value: string;
+  type?: HTMLInputTypeAttribute;
   className?: string;
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   placeholder?: string;
@@ -10,7 +11,18 @@ interface InputProps {
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ name, value, onChange, placeholder, errorMessage, className }, ref) => {
+  (
+    {
+      name,
+      value,
+      onChange,
+      placeholder,
+      errorMessage,
+      className,
+      type = "text",
+    },
+    ref,
+  ) => {
     return (
       <div className={`flex flex-col ${className}`}>
         <div
@@ -25,6 +37,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             className="w-full outline-none bg-transparent"
             placeholder={placeholder}
+            type={type}
           />
         </div>
         <div className="text-red-500 text-xs">{errorMessage}</div>

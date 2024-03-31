@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "db:update-schema": "npx drizzle-kit push:sqlite"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.10",
@@ -20,8 +21,10 @@
     "@lexical/selection": "^0.14.2",
     "@lexical/utils": "^0.14.2",
     "@libsql/client": "^0.6.0",
+    "dayjs": "^1.11.10",
     "drizzle-orm": "^0.30.5",
     "framer-motion": "^11.0.20",
+    "joi": "^17.12.2",
     "lexical": "^0.14.2",
     "next": "14.1.4",
     "react": "^18",

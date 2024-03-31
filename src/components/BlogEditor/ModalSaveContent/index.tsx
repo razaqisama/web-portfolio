@@ -3,16 +3,18 @@
 import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
 import { Controller, useForm } from "react-hook-form";
 import { ChangeEvent, useCallback, useEffect } from "react";
-import { createArticle } from "@/lib/articles/createArticle";
+import { createArticle } from "@/lib/articles";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
+import dayjs from "dayjs";
 import Input from "../../Input";
 
 interface ModalSaveContentProps {
   onCloseModal: () => void;
+  status: "published" | "draft";
 }
 
-function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
+function ModalSaveContent({ onCloseModal, status }: ModalSaveContentProps) {
   const router = useRouter();
   const [editor] = useLexicalComposerContext();
 
@@ -69,6 +71,28 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
     [setValue],
   );
 
+  const formActions = useCallback(async () => {
+    const content = JSON.stringify(editor.getEditorState());
+    const currentDate = dayjs().format("D MMMM YYYY");
+
+    const payload = {
+      title: getValues("title"),
+      description: getValues("description"),
+      slug: getValues("slug"),
+      content,
+      status,
+      publishedAt: status === "published" ? currentDate : "",
+    };
+
+    const response = await createArticle(payload);
+
+    if (response.data) {
+      router.push(`/blog/${response.data.slug}`);
+    } else {
+      toast.error(response.message);
+    }
+  }, [editor, getValues, router, status]);
+
   useEffect(() => {
     const rootElement = editor.getRootElement();
 
@@ -80,33 +104,12 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
     }
   }, [changeTitleAndSlug, editor]);
 
-  const actions = useCallback(async () => {
-    const content = JSON.stringify(editor.getEditorState());
-
-    try {
-      const payload = {
-        title: getValues("title"),
-        description: getValues("description"),
-        slug: getValues("slug"),
-        content,
-      };
-
-      const response = await createArticle(payload);
-
-      if (response.data) {
-        router.push(`/blog/${response.data.slug}`);
-      } else {
-        throw new Error("Terdapat kesalahan dalam menambahkan article");
-      }
-    } catch (err) {
-      toast.error("Terdapat kesalahan dalam menambahkan article");
-    }
-  }, [editor, getValues, router]);
-
   return (
-    <div className="flex flex-col gap-2 border border-brand-primary min-w-[320px] items-center py-4 w-full">
-      <h1 className="text-4xl text-center">Publih Your Content</h1>
-      <form action={actions} className="w-full flex flex-col gap-4 px-4">
+    <div className="flex flex-col gap-2 bg-black-primary border border-brand-primary min-w-[320px] items-center py-4 w-full">
+      <h1 className="text-4xl text-center">
+        {status === "published" ? "Publish" : "Save"} Your Content
+      </h1>
+      <form action={formActions} className="w-full flex flex-col gap-4 px-4">
         <Controller
           name="title"
           control={control}
@@ -175,7 +178,7 @@ function ModalSaveContent({ onCloseModal }: ModalSaveContentProps) {
             type="submit"
             className="border border-black-primary bg-brand-primary rounded-full py-2"
           >
-            Publish
+            {status === "published" ? "Publish" : "Save To Draft"}
           </button>
           <button
             type="button"

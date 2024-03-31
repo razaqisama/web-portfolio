@@ -226,7 +226,7 @@ function Toolbar() {
 
   return (
     <>
-      <div className="px-4 fixed bottom-0 left-0 w-full bg-main-bg">
+      <div className="px-4 fixed bottom-0 left-0 w-full bg-black-primary">
         <div className="flex flex-row gap-2 overflow-scroll border-t-2 border-white-primary">
           <div className="flex justify-center items-center flex-1 min-w-[38px] min-h-[38px]">
             <button

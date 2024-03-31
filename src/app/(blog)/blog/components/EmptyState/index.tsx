@@ -1,7 +1,7 @@
 function EmptyState() {
   return (
-    <div>
-      <div>Empty State</div>
+    <div className="w-full">
+      <p>Belum ada dokumentasi isi pikirannya Joe saat ini :(</p>
     </div>
   );
 }

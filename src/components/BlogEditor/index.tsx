@@ -39,9 +39,13 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
   };
 
   const [showPreview, setShowPreview] = useState(false);
+  const [status, setStatus] = useState<"published" | "draft">("published");
 
   const hanldeShowPreview = useCallback(
-    (value: boolean) => () => {
+    (value: boolean, statValue?: "published" | "draft") => () => {
+      if (statValue) {
+        setStatus(statValue);
+      }
       setShowPreview(value);
     },
     [],
@@ -50,18 +54,27 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="flex flex-col gap-2">
-        <div className="sticky top-0 left-0 w-full bg-main-bg z-[10]">
+        <div className="sticky top-0 left-0 w-full bg-black-primary z-[10]">
           <div className="flex flex-row items-center justify-between py-2 border-b-2 border-white-primary">
             <Link href="/blog">
               <ChevronLeftIcon size={24} strokeWidth={2} />
             </Link>
-            <button
-              className="px-8 py-1 text-sm border border-brand-primary text-brand-primary bg-primary-choco rounded-full font-bold text-primary-cream uppercase"
-              type="button"
-              onClick={hanldeShowPreview(true)}
-            >
-              Publish
-            </button>
+            <div className="flex flex-row gap-2">
+              <button
+                className="px-8 py-1 text-sm border border-brand-primary text-brand-primary rounded-full font-bold uppercase"
+                type="button"
+                onClick={hanldeShowPreview(true, "draft")}
+              >
+                Save
+              </button>
+              <button
+                className="px-8 py-1 text-sm bg-brand-primary text-white-primary rounded-full font-bold uppercase"
+                type="button"
+                onClick={hanldeShowPreview(true, "published")}
+              >
+                Publish
+              </button>
+            </div>
           </div>
         </div>
 
@@ -86,7 +99,10 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
         show={showPreview}
         onClose={hanldeShowPreview(false)}
       >
-        <ModalSaveContent onCloseModal={hanldeShowPreview(false)} />
+        <ModalSaveContent
+          status={status}
+          onCloseModal={hanldeShowPreview(false)}
+        />
       </Modal>
     </LexicalComposer>
   );
