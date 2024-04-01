@@ -1,7 +1,13 @@
+import type { Metadata } from "next";
 import { ReactNode } from "react";
 import { AppProviders } from "@/components";
 
-export default function AdminLayout({
+export const metadata: Metadata = {
+  title: "Razaqisama - Sign In",
+  description: "Welcome to my Portfolio!",
+};
+
+export default function BlogLayout({
   children,
 }: Readonly<{
   children: ReactNode;
