@@ -1,7 +1,7 @@
 function GalleryForm() {
   return (
     <div>
-      <div>For adding or deleting new images</div>
+      <div>For adding or deleting images</div>
     </div>
   );
 }
