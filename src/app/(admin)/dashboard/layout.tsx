@@ -21,12 +21,12 @@ async function DashboardLayout({ children }: DashboardLayoutProps) {
     },
     {
       label: "Profile",
-      href: "/profile",
+      href: "/dashboard/profile",
       icon: <UserIcon strokeWidth={2} className="w-6 h-6" />,
     },
     {
       label: "Activity",
-      href: "/activity",
+      href: "/dashboard/activity",
       icon: <FaceSmileIcon strokeWidth={2} />,
     },
   ];
