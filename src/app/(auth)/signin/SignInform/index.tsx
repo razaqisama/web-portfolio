@@ -27,7 +27,7 @@ function SignInForm() {
 
     if (response.data) {
       toast.success("Berhasil Login");
-      router.push("/admin");
+      router.push("/dashboard");
     } else {
       toast.error(response.message);
     }

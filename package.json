@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "db:dev": "turso dev --db-file dev.db",
     "db:update-schema": "npx drizzle-kit push:sqlite"
   },
   "dependencies": {

@@ -5,11 +5,11 @@
 import { useCallback, useState } from "react";
 import { LexicalComposer } from "@lexical/react/LexicalComposer";
 import { ChevronLeftIcon } from "@/icons";
-import Link from "next/link";
 import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
 import { ContentEditable } from "@lexical/react/LexicalContentEditable";
 import LexicalErrorBoundary from "@lexical/react/LexicalErrorBoundary";
 import { EditorState } from "lexical";
+import { useRouter } from "next/navigation";
 import Modal from "../Modal";
 import { theme } from "./ContentEditor/theme";
 import { nodes } from "./ContentEditor/nodes";
@@ -38,6 +38,7 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
     onError,
   };
 
+  const router = useRouter();
   const [showPreview, setShowPreview] = useState(false);
   const [status, setStatus] = useState<"published" | "draft">("published");
 
@@ -51,14 +52,18 @@ function BlogEditor({ initialState, editable = true }: EditorProps) {
     [],
   );
 
+  const handleToPreviousRoute = useCallback(() => {
+    router.back();
+  }, [router]);
+
   return (
     <LexicalComposer initialConfig={initialConfig}>
       <div className="flex flex-col gap-2">
         <div className="sticky top-0 left-0 w-full bg-black-primary z-[10]">
           <div className="flex flex-row items-center justify-between py-2 border-b-2 border-white-primary">
-            <Link href="/blog">
+            <button type="button" onClick={handleToPreviousRoute}>
               <ChevronLeftIcon size={24} strokeWidth={2} />
-            </Link>
+            </button>
             <div className="flex flex-row gap-2">
               <button
                 className="px-8 py-1 text-sm border border-brand-primary text-brand-primary rounded-full font-bold uppercase"

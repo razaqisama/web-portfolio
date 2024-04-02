@@ -47,7 +47,7 @@ export async function register(payload: RegisterPayload) {
     }
 
     return {
-      message: "Terdapat Kesalahan Dalam Membuat User Baru",
+      message: error.message,
       data: undefined,
     };
   }
