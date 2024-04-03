@@ -27,7 +27,7 @@ function RegisterPage() {
 
     if (response.data) {
       toast.success("Berhasil menambahkan akun baru");
-      router.push("/admin");
+      router.push("/signin");
     } else {
       toast.error(response.message);
     }

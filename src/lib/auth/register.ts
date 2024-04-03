@@ -17,6 +17,7 @@ export async function register(payload: RegisterPayload) {
     id: generateRandomString(16),
     username: payload.username,
     passwordHash: await hashPassword(payload.password),
+    name: payload.username,
   };
 
   try {

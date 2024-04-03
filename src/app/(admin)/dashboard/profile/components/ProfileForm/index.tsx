@@ -1,9 +1,13 @@
 "use client";
 
 import { Input } from "@/components";
+import { updateUserProfile } from "@/lib/users/updateUserProfile";
+import { useCallback } from "react";
 import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 interface ProfileDefaultState {
+  id: string;
   name: string;
   birthDate: string;
   profession: string;
@@ -44,12 +48,44 @@ function ProfileForm({ defaultState }: ProfileFormProps) {
     },
   ];
 
-  const { control } = useForm<ProfileDefaultState>({
+  const {
+    control,
+    getValues,
+    reset,
+    formState: { isDirty },
+  } = useForm<ProfileDefaultState>({
     defaultValues: defaultState,
   });
 
+  const formAction = useCallback(async () => {
+    const payload = {
+      name: getValues("name"),
+      birthDate: getValues("birthDate"),
+      profession: getValues("profession"),
+      passion: getValues("passion"),
+      vision: getValues("vision"),
+    };
+
+    const response = await updateUserProfile(defaultState?.id ?? "", payload);
+
+    if (response.data) {
+      reset({
+        id: response.data.id,
+        name: response.data.name,
+        birthDate: response.data.birthDate ?? "",
+        profession: response.data.profession ?? "",
+        passion: response.data.passion ?? "",
+        vision: response.data.vision ?? "",
+      });
+
+      toast.success(response.message);
+    } else {
+      toast.error(response.message);
+    }
+  }, [defaultState?.id, getValues, reset]);
+
   return (
-    <form className="flex flex-col gap-4 border-b pb-4">
+    <form action={formAction} className="flex flex-col gap-4 border-b pb-4">
       {formFields.map((item) => {
         return (
           <div key={item.formName} className="flex flex-row items-end gap-2">
@@ -75,7 +111,8 @@ function ProfileForm({ defaultState }: ProfileFormProps) {
       })}
       <div className="flex justify-end">
         <button
-          className="bg-brand-primary px-4 py-2 rounded-full"
+          disabled={!isDirty}
+          className={`bg-brand-primary px-4 py-2 rounded-full ${isDirty ? "opacity-100" : "opacity-60"}`}
           type="submit"
         >
           Save Changes

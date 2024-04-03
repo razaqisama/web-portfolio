@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "db:dev": "turso dev --db-file dev.db",
-    "db:update-schema": "npx drizzle-kit push:sqlite"
+    "db:push": "npx drizzle-kit push:sqlite"
   },
   "dependencies": {
     "@floating-ui/react": "^0.26.10",

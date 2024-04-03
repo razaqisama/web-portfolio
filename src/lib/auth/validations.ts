@@ -6,6 +6,7 @@ export class AuthValidations {
       id: Joi.string().required(),
       username: Joi.string().required(),
       passwordHash: Joi.string().required(),
+      name: Joi.string().required(),
     });
   }
 
