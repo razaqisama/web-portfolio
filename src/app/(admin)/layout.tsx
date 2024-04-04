@@ -1,5 +1,5 @@
 import { ReactNode } from "react";
-import { AppProviders, RouteGuards } from "@/components";
+import { AppProviders } from "@/components";
 
 export default async function AdminLayout({
   children,
@@ -8,9 +8,9 @@ export default async function AdminLayout({
 }>) {
   return (
     <AppProviders>
-      <RouteGuards className="w-dvw h-dvh p-4 lg:p-8 flex justify-center items-center">
+      <main className="w-dvw h-dvh p-4 lg:p-8 flex justify-center items-center">
         {children}
-      </RouteGuards>
+      </main>
     </AppProviders>
   );
 }

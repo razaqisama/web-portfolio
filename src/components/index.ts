@@ -8,4 +8,3 @@ export { default as Loader } from "./Loader";
 export { default as Modal } from "./Modal";
 export { default as NextImage } from "./NextImage";
 export { default as ProfessionTitle } from "./ProfessionTitle";
-export { default as RouteGuards } from "./RouteGuards";
