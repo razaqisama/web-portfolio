@@ -11,6 +11,8 @@
     "db:push": "npx drizzle-kit push:sqlite"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.540.0",
+    "@aws-sdk/s3-request-presigner": "^3.540.0",
     "@floating-ui/react": "^0.26.10",
     "@lexical/code": "^0.14.2",
     "@lexical/html": "^0.14.2",

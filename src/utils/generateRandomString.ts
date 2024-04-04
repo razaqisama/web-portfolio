@@ -1,6 +1,6 @@
 import crypto from "crypto";
 
-export function generateRandomString(bytes: number) {
+export function generateRandomString(bytes: number = 32) {
   if (process.env.NEXT_RUNTIME === "nodejs") {
     return crypto.randomBytes(bytes).toString("hex");
   }

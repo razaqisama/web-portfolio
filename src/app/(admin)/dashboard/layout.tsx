@@ -1,5 +1,6 @@
 import {
   FaceSmileIcon,
+  FolderIcon,
   PencilSquareIcon,
   SignOutIcon,
   UserIcon,
@@ -29,6 +30,11 @@ async function DashboardLayout({ children }: DashboardLayoutProps) {
       href: "/dashboard/activity",
       icon: <FaceSmileIcon strokeWidth={2} />,
     },
+    {
+      label: "Media",
+      href: "/dashboard/media",
+      icon: <FolderIcon strokeWidth={2} />,
+    },
   ];
 
   return (
@@ -40,7 +46,7 @@ async function DashboardLayout({ children }: DashboardLayoutProps) {
             {menus.map((item) => {
               return (
                 <Link
-                  className="flex flex-row gap-2 items-center"
+                  className="flex flex-row gap-2 items-center hover:pl-2 hover:text-brand-primary transition-[padding-left,color] ease-in-out duration-300"
                   key={item.href}
                   href={item.href}
                 >
@@ -61,7 +67,7 @@ async function DashboardLayout({ children }: DashboardLayoutProps) {
         </form>
       </div>
       <div className="flex-1 overflow-y-auto">
-        <div className="px-4">{children}</div>
+        <div className="w-full h-full px-4">{children}</div>
       </div>
     </div>
   );
