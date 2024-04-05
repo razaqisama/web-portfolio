@@ -1,6 +1,7 @@
 import { NextImage } from "@/components";
 import { getAllMedia } from "@/lib/media";
 import UploadMediaButton from "./components/UploadMediaButton";
+import RemoveButton from "./components/RemoveButton";
 
 async function MediaPage() {
   const images = await getAllMedia();
@@ -15,12 +16,14 @@ async function MediaPage() {
         {images.data &&
           images.data.map((item) => {
             return (
-              <div className="min-w-64 min-h-64" key={item.id}>
+              <div className="group relative min-w-64 min-h-64" key={item.id}>
                 <NextImage
                   alt="dummy"
                   className="w-full h-full"
                   path={item.url}
+                  sizes="256px"
                 />
+                <RemoveButton id={item.id} url={item.url} />
               </div>
             );
           })}

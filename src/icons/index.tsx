@@ -18,6 +18,7 @@ export { default as RectStackIcon } from "./RectStackIcon";
 export { default as SignOutIcon } from "./SignOutIcon";
 export { default as ThumbsDownIcon } from "./ThumbsDownIcon";
 export { default as ThumbsUpIcon } from "./ThumbsUpIcon";
+export { default as TrashIcon } from "./TrashIcon";
 export { default as TwoBarsIcon } from "./TwoBarsIcon";
 export { default as UserIcon } from "./UserIcon";
 export { default as XMarkIcon } from "./XMarkIcon";

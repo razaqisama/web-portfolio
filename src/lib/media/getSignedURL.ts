@@ -2,16 +2,9 @@
 
 import { config } from "@/config";
 import { generateRandomString } from "@/utils/generateRandomString";
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-
-const s3 = new S3Client({
-  region: config.aws.s3.region ?? "",
-  credentials: {
-    accessKeyId: config.aws.s3.accessKey ?? "",
-    secretAccessKey: config.aws.s3.secretKey ?? "",
-  },
-});
+import { s3 } from "./s3";
 
 const acceptedTypes = ["image/jpeg", "image/png", "image/webp", "image/gif"];
 const acceptedSize = 1024 * 1024 * 10;

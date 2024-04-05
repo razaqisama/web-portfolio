@@ -6,9 +6,10 @@ interface ImagesProps {
   path: string | StaticImageData;
   alt: string;
   children?: ReactNode;
+  sizes?: string;
 }
 
-function NextImage({ className, path, alt, children }: ImagesProps) {
+function NextImage({ className, path, alt, sizes, children }: ImagesProps) {
   return (
     <div className={`${className ?? ""} relative`}>
       <Image
@@ -17,7 +18,9 @@ function NextImage({ className, path, alt, children }: ImagesProps) {
         alt={alt}
         fill
         style={{ objectFit: "cover" }}
-        // placeholder="blur"
+        placeholder="blur"
+        blurDataURL="/placeholder.webp"
+        sizes={sizes}
       />
       {children}
     </div>
