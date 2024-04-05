@@ -1,11 +1,11 @@
 "use server";
 
 import { db } from "@/database";
-import { media as mediaTables } from "@/database/schema";
+import { media as mediaTable } from "@/database/schema";
 
 export async function getAllMedia() {
   try {
-    const articles = await db.select().from(mediaTables);
+    const articles = await db.select().from(mediaTable);
 
     return {
       message: "",

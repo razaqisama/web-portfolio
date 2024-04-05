@@ -2,7 +2,7 @@
 
 import { config } from "@/config";
 import { db } from "@/database";
-import { media as mediaTables } from "@/database/schema";
+import { media as mediaTable } from "@/database/schema";
 import { DeleteObjectCommand } from "@aws-sdk/client-s3";
 import { eq } from "drizzle-orm";
 import { revalidatePath } from "next/cache";
@@ -11,8 +11,8 @@ import { s3 } from "./s3";
 export async function deleteMedia(id: string) {
   try {
     const [media] = await db
-      .delete(mediaTables)
-      .where(eq(mediaTables.id, id))
+      .delete(mediaTable)
+      .where(eq(mediaTable.id, id))
       .returning();
 
     const cmd = new DeleteObjectCommand({

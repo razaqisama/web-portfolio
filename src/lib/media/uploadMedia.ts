@@ -1,7 +1,7 @@
 "use server";
 
 import { db } from "@/database";
-import { media as mediaTables } from "@/database/schema";
+import { media as mediaTable } from "@/database/schema";
 import { generateRandomString } from "@/utils/generateRandomString";
 import { revalidatePath } from "next/cache";
 import { getSignedURL } from "./getSignedURL";
@@ -53,7 +53,7 @@ export async function uploadMedia(form: FormData) {
         };
 
         const [result] = await db
-          .insert(mediaTables)
+          .insert(mediaTable)
           .values(newMedia)
           .returning();
 

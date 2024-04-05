@@ -1,3 +1,3 @@
 export * from "./createArticle";
-export * from "./getArticles";
+export * from "./getAllArticles";
 export * from "./getOneArticleBySlug";
