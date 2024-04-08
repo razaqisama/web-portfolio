@@ -34,13 +34,22 @@ function Biodata() {
           And to be a person who contributes positively to life.
         </p>
       </div>
-      <Link
-        className="px-4 rounded-full border border-brand-primary hover:border-white-primary text-brand-primary hover:text-white-primary w-full lg:max-w-max py-1 flex flex-row items-center justify-center group transition duration-300 ease-in-out"
-        href="/contact"
-      >
-        <div className="w-0 h-0 group-hover:w-3 group-hover:h-3 group-hover:mr-2 rounded-full bg-white-primary group-hover:bg-brand-primary transition-[background,width,height,margin-right] duration-300 ease-in-out" />
-        Connect With Me?
-      </Link>
+      <div className="flex flex-row gap-2">
+        <Link
+          className="px-4 rounded-full border border-white-primary text-white-primary w-full py-1 flex flex-row items-center justify-center group transition duration-300 ease-in-out"
+          href="/resume"
+        >
+          <div className="w-0 h-0 group-hover:w-3 group-hover:h-3 group-hover:mr-2 rounded-full bg-white-primary group-hover:bg-brand-primary transition-[background,width,height,margin-right] duration-300 ease-in-out" />
+          Resume
+        </Link>
+        <Link
+          className="px-4 rounded-full border border-white-primary text-white-primary w-full py-1 flex flex-row items-center justify-center group transition duration-300 ease-in-out"
+          href="/contact"
+        >
+          <div className="w-0 h-0 group-hover:w-3 group-hover:h-3 group-hover:mr-2 rounded-full bg-white-primary group-hover:bg-brand-primary transition-[background,width,height,margin-right] duration-300 ease-in-out" />
+          Connect
+        </Link>
+      </div>
     </div>
   );
 }

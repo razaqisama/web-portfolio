@@ -32,19 +32,11 @@ export default function HomePage() {
       path: "/about",
     },
     {
-      label: "Works",
-      path: "/professional-experiences",
+      label: "Resume",
+      path: "/resume",
     },
     {
-      label: "Projects",
-      path: "/projects",
-    },
-    {
-      label: "Achievements",
-      path: "/achievements",
-    },
-    {
-      label: "MyArts",
+      label: "Artistic Expression",
       path: "/arts",
     },
     {
